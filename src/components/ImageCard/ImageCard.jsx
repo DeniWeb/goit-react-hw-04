@@ -1,9 +1,14 @@
 import s from './ImageCard.module.css';
 
-const ImageCard = () => {
+const ImageCard = ({ src, alt, likes, openModal }) => {
   return (
     <div>
-      <img src="" alt="" />
+      <img
+        src={src.small}
+        alt={alt}
+        onClick={() => openModal(src.full, alt, likes)}
+        className={s.gallery_img}
+      />
     </div>
   );
 };
