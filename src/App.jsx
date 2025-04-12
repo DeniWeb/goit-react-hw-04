@@ -44,8 +44,13 @@ function App() {
         setIsLoading(false);
       }
     };
+
+    if (isEmpty) {
+      toast.error('No match found!');
+    }
+
     fetchImages();
-  }, [page, query, perPage]);
+  }, [page, query, perPage, isEmpty]);
 
   const onHandleSubmit = value => {
     setQuery(value);
@@ -84,7 +89,7 @@ function App() {
       )}
 
       {isLoading && <Loader />}
-      {page < totalPage && !isLoading && (
+      {page < totalPage && !isLoading && images.length > 0 && (
         <LoadMoreBtn onClick={handleLoadMore} disabled={isLoading}>
           Load more
         </LoadMoreBtn>
